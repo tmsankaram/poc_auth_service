@@ -1,0 +1,35 @@
+{% extends "users/base.html" %} {% block title %}Dashboard | Auth Service{%
+endblock %} {% block content %}
+<h2>Welcome</h2>
+<p class="meta" style="margin-top: 0">
+  This route is protected and only visible to logged-in users.
+</p>
+<div
+  style="
+    border: 1px solid #d6c9b5;
+    border-radius: 12px;
+    padding: 14px 16px;
+    background: #fff;
+    margin-top: 12px;
+  "
+>
+  <p style="margin: 0 0 8px">
+    <strong>Email:</strong> {{ request.user.email }}
+  </p>
+  <p style="margin: 0 0 8px">
+    <strong>Company:</strong> {{ request.user.company_name }}
+  </p>
+  <p style="margin: 0">
+    <strong>Department:</strong> {{ request.user.department_code }}
+  </p>
+</div>
+<form method="post" action="{% url 'sample_logout' %}">
+  {% csrf_token %}
+  <button class="btn" type="submit">Logout</button>
+</form>
+<p class="meta">
+  API still available at
+  <a href="/api/users/register/">/api/users/register/</a> and
+  <a href="/api/users/token/">/api/users/token/</a>
+</p>
+{% endblock %}
