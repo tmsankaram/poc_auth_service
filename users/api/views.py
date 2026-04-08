@@ -1,18 +1,16 @@
-from typing import Any
-
 from django.contrib.auth import authenticate
 from rest_framework import exceptions
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from ..models import CustomUser
 from .serializers import UserModelSerializer
 
 
-class UserProfileListCreateView(ListCreateAPIView):
-    """Generic View for listing and creating user profiles"""
+class UserRegisterView(CreateAPIView):
+    """Public endpoint for user registration."""
 
     queryset = CustomUser.objects.all()
     serializer_class = UserModelSerializer
