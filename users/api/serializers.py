@@ -8,9 +8,7 @@ class UserModelSerializer(ModelSerializer):
         fields = [
             "email",
             "password",
-            "phone",
             "company_name",
-            "job_title",
-            "office_situated",
+            "department_code",
         ]
         extra_kwargs = {"password": {"write_only": True, "min_length": 5}}

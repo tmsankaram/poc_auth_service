@@ -7,8 +7,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from models import CustomUser
-from serializers import UserModelSerializer
+from ..models import CustomUser
+from .serializers import UserModelSerializer
 
 
 class UserProfileListCreateView(ListCreateAPIView):
@@ -17,10 +17,6 @@ class UserProfileListCreateView(ListCreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserModelSerializer
     permission_classes = [AllowAny]
-
-    def create(self, validated_data):
-        user = CustomUser.objects.create_user(**validated_data)
-        return user
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
